@@ -1,6 +1,15 @@
+import { counts } from '../digest/reader.js';
+import { readNight } from '../digest/reader.js';
 import type { Status } from '../status.js';
 
-export function StatusBoard({ status }: { status: Status }) {
+function summarize(runsDir: string, night: string): string {
+  const data = readNight(runsDir, night);
+  if (!data) return '—';
+  const c = counts(data.rows);
+  return `ok ${c.ok} · retry ${c.retry} · fail ${c.fail}`;
+}
+
+export function StatusBoard({ status, runsDir }: { status: Status; runsDir: string }) {
   return (
     <>
       <h1>status</h1>
@@ -20,7 +29,10 @@ export function StatusBoard({ status }: { status: Status }) {
       ) : (
         <ul>
           {status.nights.map((n) => (
-            <li>{n}</li>
+            <li>
+              <a href={`/digest/${n}`}>{n}</a>{' '}
+              <span class="mute">{summarize(runsDir, n)}</span>
+            </li>
           ))}
         </ul>
       )}
