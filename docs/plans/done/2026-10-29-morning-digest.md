@@ -87,3 +87,13 @@ Done when: the preview link no longer shows the lane marker.
 - #5 Digest page
 - #6 Preview for review
 - #7 Clean up
+
+## Issues
+
+- #1 Run log reader + digest types
+- #2 Digest JSON
+- #3 Status board links
+- #4 Route tests
+- #5 Digest page
+- #6 Preview for review
+- #7 Clean up
